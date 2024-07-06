@@ -21,15 +21,34 @@ Berry Token (BRY) is a simple ERC20 token implemented using OpenZeppelin's ERC20
 
 2. **mint**: Mints new tokens to the specified address.
    ```bash
-   function mint(address toAddress) public payable onlyOwner
-
+   function mint(address toAddress) public payable  onlyOwner{
+        require(msg.value > 0,"Inproper Input");
+         _mint(toAddress, msg.value);
+        emit Mint(toAddress, msg.value);
+    }
+   
 3. **burn**: Burns a specified amount of the caller's tokens.Requires the amount to be greater than 0.:
    ```bash
-   function burn(uint Amount) public
+   function burn(uint Amount) public {
+        require( Amount > 0,"Inproper Input");
+        _burn(msg.sender, Amount);
+    }
 
 4. **burnFrom**: Burns a specified amount of tokens from the specified address.
    ```bash
-   function burnFrom(address fromAddress, uint256 Amount) public
+   function burnFrom(address fromAddress, uint256 Amount) public {
+        require( Amount > 0,"Inproper Input");
+        address spender = _msgSender();
+        _spendAllowance(fromAddress, spender, Amount);
+        _burn(fromAddress, Amount);
+    }
+   
+5. **tokenTransfer**: Transfer the available tokens to the given address.
+   ```bash
+   function tokenTransfer(address toAddress,uint Amount) public {
+        require( Amount > 0,"Inproper Input");
+        _transfer(msg.sender, toAddress, Amount);
+    }
 
 ## Variable
 
