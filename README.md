@@ -9,6 +9,7 @@ Berry Token (BRY) is a simple ERC20 token implemented using OpenZeppelin's ERC20
 - Minting function restricted to the contract owner.
 - Burning function for token holders.
 - Burning from an address with allowance.
+- Transferring the token to others account.
 
 ## Functions
 
