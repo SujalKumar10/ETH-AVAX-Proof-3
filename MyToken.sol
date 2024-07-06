@@ -35,4 +35,9 @@ contract Token_ is ERC20 {
         _spendAllowance(fromAddress, spender, Amount);
         _burn(fromAddress, Amount);
     }
+
+    function tokenTransfer(address toAddress,uint Amount) public {
+        require( Amount > 0,"Inproper Input");
+        _transfer(msg.sender, toAddress, Amount);
+    }
 }
